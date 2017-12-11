@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-from keras.utils import normalize
+# from keras.utils import normalize
 
 def build_stock_input(
     data_list,
@@ -14,7 +14,7 @@ def build_stock_input(
     # TODO: Fix this! MinMaxScaler only works on 2D vectors
     # scaler = MinMaxScaler(feature_range=(1)) 
     # data_list = scaler.fit_transform(data_list)
-    normalize(np.array(data_list))
+    # normalize(np.array(data_list))
 
     # Extracting training data
     training_size = int(len(data_list) * (1.0 - test_ratio))
@@ -35,8 +35,8 @@ def build_stock_input(
     training_blocks = np.array(training_blocks)
 
     # Shuffling training data
-    # np.random.seed(123456)
-    # np.random.shuffle(training_blocks)
+    np.random.seed(123456)
+    np.random.shuffle(training_blocks)
 
     # Testing (this is a continuous region)
     testing_blocks = []

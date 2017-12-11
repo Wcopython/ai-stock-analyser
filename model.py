@@ -35,6 +35,7 @@ def build_lstm_model():
     x = LSTM(100)(x)
     x = Dropout(0.2)(x)
 
+    x = Dense(50, activation='linear')(x)
     # Linear??
     output_a = Dense(1, activation='linear')(x)
     output_b = Dense(1, activation='linear')(x)
@@ -51,46 +52,29 @@ def build_lstm_model():
 
     return model
 
-def predict_range(trained_model, block_data, length):
-    data_window = []
-    result = []
-    for i in range(len(block_data)):
-        # Get the first table from each src
-        data_window.append(np.array(block_data[i][0:2]))
-    
-    # # data_window = np.array(data_window)
-    print(data_window[0])
+def prediction_invalid(trained_model, block_data, length):
+    return trained_model(block_data)
+
+def prediction_real(trained_model, block_data, length):
+    data_window = [block_data[0][:1], block_data[1][:1]]
+    result = [[],[]]
+    window_size = len(block_data[0][0])
+    print('Creating predictions')
 
     for i in range(length):
-        predictions = trained_model.predict(data_window, batch_size=1)
-        result.append(predictions)
+        predictions = trained_model.predict(data_window)
+        # First result list, first output, first batch, first value
+        result[0].append(predictions[0][0][0])
+        result[1].append(predictions[1][0][0])
 
-        # Add this to datawindow
-        for j in range(len(data_window)):
-            data_window[j] = np.append(data_window[j], predictions[j])[1:]
-        
+        # Adding new last and removing first
+        data_window[0] = [data_window[0][0][1:]]
+        data_window[1] = [data_window[1][0][1:]]
 
+        data_window[0] = np.insert(data_window[0], window_size - 1, predictions[0], axis=1)
+        data_window[1] = np.insert(data_window[1], window_size - 1, predictions[1], axis=1)
+ 
     return result
-
-def test(trained_model, block_data, length):
-    data_window = [block_data[0][:], block_data[1][:]]
-    result = []
-    
-    # # data_window = np.array(data_window)
-    # print(data_window)
-
-    return trained_model.predict(data_window)
-
-    # for i in range(length):
-    #     predictions = trained_model.predict(data_window, batch_size=1)
-    #     result.append(predictions)
-
-    #     # Add this to datawindow
-    #     for j in range(len(data_window)):
-    #         data_window[j] = np.append(data_window[j], predictions[j])[1:]
-        
-
-    # return result
 
 
 if __name__ == '__main__':
