@@ -24,7 +24,7 @@ def main():
 
     # Reading stock data
     # Edit these strings to change which stocks to create predictions from.
-    raw_1 = pandas.read_csv('data/PEAB.csv', usecols=[2], engine='python').values.astype('float32')
+    raw_1 = pandas.read_csv('data/TEVA.csv', usecols=[2], engine='python').values.astype('float32')
     raw_2 = pandas.read_csv('data/GOLD.csv', usecols=[2], engine='python').values.astype('float32')
     
     # plt.plot(stock_1)
@@ -63,7 +63,7 @@ def main():
 
         # Training model
         tensorboard = TensorBoard(log_dir="logs/{}".format("lstm_test"))
-        model.fit([train_x1, train_x2], [train_y1, train_y2], verbose=1, epochs = 15, callbacks=[tensorboard])
+        model.fit([train_x1, train_x2], [train_y1, train_y2], verbose=1, epochs = 20, callbacks=[tensorboard])
         
         model.save('save/model.h5')
         print("Result saved!")
@@ -101,6 +101,16 @@ def main():
             nr_of_stocks = 0
         
         money_result.append(money + nr_of_stocks * actual_price[i])
+
+    growth = (money_result[-1] - money_result[1]) / money_result[1]
+    stock_growth = (actual_price[-1] - actual_price[1]) / actual_price[1]
+
+    print("Model start: " +     str(money_result[0]))
+    print("Model end: " +       str(money_result[-1]))
+    print("Stock start: " +     str(actual_price[0]))
+    print("Stock end: " +       str(actual_price[-1]))
+    print("Model growth: " +    str(growth))
+    print("Stock growth: " +    str(stock_growth))
 
     subPlots = True
     if subPlots:
