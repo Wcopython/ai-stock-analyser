@@ -52,9 +52,6 @@ def build_lstm_model():
 
     return model
 
-def prediction_invalid(trained_model, block_data, length):
-    return trained_model(block_data)
-
 def prediction_real(trained_model, block_data, length):
     data_window = [block_data[0][:1], block_data[1][:1]]
     result = [[],[]]

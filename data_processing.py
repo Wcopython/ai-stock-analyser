@@ -35,6 +35,7 @@ def build_stock_input(
     training_blocks = np.array(training_blocks)
 
     # Shuffling training data
+    # It should be the same shuffle every time you run this function if the input size is the same!
     np.random.seed(123456)
     np.random.shuffle(training_blocks)
 

@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 from sklearn.metrics import mean_absolute_error
 
-from model import build_lstm_model, prediction_real, prediction_invalid 
+from model import build_lstm_model, prediction_sequence
 from data_processing import build_stock_input, merge_data
 
 def main():
@@ -38,8 +38,6 @@ def main():
     # Creating training and testing data
     stock_1 = build_stock_input(data_list = stock_1, input_size = 100, test_ratio = 0.1, step_size = 5)
     stock_2 = build_stock_input(data_list = stock_2, input_size = 100, test_ratio = 0.1, step_size = 5)
-
-    print(build_stock_input(data_list = [1,2,3,4,5,6,7,8,9], input_size = 5, test_ratio = 0.5, step_size = 2)[0])
 
     train_x1 = stock_1[0]
     train_x2 = stock_2[0]
