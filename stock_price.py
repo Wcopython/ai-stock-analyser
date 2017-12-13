@@ -23,6 +23,7 @@ def main():
     numpy.random.seed(123456)
 
     # Reading stock data
+    # Edit these strings to change which stocks to create predictions from.
     raw_1 = pandas.read_csv('data/PEAB.csv', usecols=[2], engine='python').values.astype('float32')
     raw_2 = pandas.read_csv('data/GOLD.csv', usecols=[2], engine='python').values.astype('float32')
     

@@ -52,7 +52,7 @@ def build_lstm_model():
 
     return model
 
-def prediction_real(trained_model, block_data, length):
+def prediction_sequence(trained_model, block_data, length):
     data_window = [block_data[0][:1], block_data[1][:1]]
     result = [[],[]]
     window_size = len(block_data[0][0])
