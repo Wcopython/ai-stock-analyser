@@ -23,7 +23,7 @@ def main():
     numpy.random.seed(123456)
 
     # Reading stock data
-    raw_1 = pandas.read_csv('data/CSCO.csv', usecols=[2], engine='python').values.astype('float32')
+    raw_1 = pandas.read_csv('data/PEAB.csv', usecols=[2], engine='python').values.astype('float32')
     raw_2 = pandas.read_csv('data/GOLD.csv', usecols=[2], engine='python').values.astype('float32')
     
     # plt.plot(stock_1)
@@ -38,6 +38,8 @@ def main():
     # Creating training and testing data
     stock_1 = build_stock_input(data_list = stock_1, input_size = 100, test_ratio = 0.1, step_size = 5)
     stock_2 = build_stock_input(data_list = stock_2, input_size = 100, test_ratio = 0.1, step_size = 5)
+
+    print(build_stock_input(data_list = [1,2,3,4,5,6,7,8,9], input_size = 5, test_ratio = 0.5, step_size = 2)[0])
 
     train_x1 = stock_1[0]
     train_x2 = stock_2[0]
@@ -62,7 +64,7 @@ def main():
 
         # Training model
         tensorboard = TensorBoard(log_dir="logs/{}".format("lstm_test"))
-        model.fit([train_x1, train_x2], [train_y1, train_y2], verbose=1, epochs = 20, callbacks=[tensorboard])
+        model.fit([train_x1, train_x2], [train_y1, train_y2], verbose=1, epochs = 15, callbacks=[tensorboard])
         
         model.save('save/model.h5')
         print("Result saved!")

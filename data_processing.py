@@ -25,7 +25,7 @@ def build_stock_input(
     # Dividing content in equal batch sizes (blocks) 
     # Elements will be repeated!
 
-    # Training
+    # Training data
     training_blocks = []
     index = 0
     while index + input_size < len(training_data):
