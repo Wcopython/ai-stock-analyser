@@ -7,10 +7,10 @@ import csv
 from textblob import TextBlob 
 
 consumer_key = 'CPk3GUu7FWTn5RddBJaYFFy8K'
-consumer_secret = '0TBRdEV1ygdD3KCdMtx40F4eKsVIZcpEHlYyXNsW18btKhZvq6'
+consumer_secret = ''
 
 access_token = '937989586457911296-Xcz1GHvFgG1Fltx887C2fY81kKnZMsN'
-access_token_secret = 'JDJ14z5cYzBZJ6LBxZAcHzAyyvjrSnK41IU2lv6SAC9OX'
+access_token_secret = ''
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
