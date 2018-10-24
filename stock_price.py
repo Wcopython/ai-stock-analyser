@@ -56,7 +56,7 @@ def main():
     # # Creating a scaler object and apply it to the data set
     # Does not work in 2D
     # stocks_test = scaler.fit_transform(stocks_test)
-    loadModelFromFile = False
+    loadModelFromFile = True
     if not loadModelFromFile:
 
         model = build_lstm_model()
