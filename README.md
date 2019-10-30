@@ -19,7 +19,7 @@ The following tensorflow graph (DAG) represent the general flow of data in the p
 
 ![Tensorflow Graph](screenshots/tensorflow-graph.png)
 
-## Acknoledgements
+## Acknowledgements
 
 The project took inspiration from multiple different sources, among others this website was important in the design decisions.
 
